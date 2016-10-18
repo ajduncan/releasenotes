@@ -22,8 +22,8 @@ then
     sudo -u vagrant -s <<'EOF' || exit 1
 cd /vagrant/
 virtualenv -p /usr/bin/python3.5 /home/vagrant/env
-source /home/vagrant/env/bin/activate
-pip install -r requirements.txt
+cd /vagrant/
+/home/vagrant/env/bin/pip install -r requirements.txt
 EOF
 
     cat <<'EOF' > /etc/supervisor/conf.d/runserver.conf
@@ -37,4 +37,6 @@ EOF
     touch /home/vagrant/provisioned
 fi
 
+systemctl enable supervisor
+systemctl start supervisor
 supervisorctl start runserver
