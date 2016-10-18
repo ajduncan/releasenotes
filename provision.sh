@@ -10,7 +10,7 @@ then
     # Mysql install
     echo 'mysql-server mysql-server/root_password password releasenotes' | debconf-set-selections
     echo 'mysql-server mysql-server/root_password_again password releasenotes' | debconf-set-selections
-    apt-get install -y mysql-server-5.5 > /dev/null 2>&1
+    apt-get install -y mysql-server-5.7 > /dev/null 2>&1
 
     # Mysql setup
     mysqladmin -uroot -preleasenotes create releasenotes || exit 1
