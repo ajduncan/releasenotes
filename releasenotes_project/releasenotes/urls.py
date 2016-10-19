@@ -3,7 +3,7 @@ from rest_framework import routers
 from releasenotes import views
 
 router = routers.DefaultRouter()
-router.register(r'releasenotes', views.ReleasenotesViewSet)
+router.register(r'release-note', views.ReleasenotesViewSet)
 
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.

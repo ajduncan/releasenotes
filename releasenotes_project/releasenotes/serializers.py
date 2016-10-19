@@ -7,4 +7,4 @@ class ReleaseNotesSerializer(serializers.HyperlinkedModelSerializer):
   class Meta:
     model = ReleaseNote
     fields = ('hardware', 'model', 'firmware', 'app_version', 'app_platform',
-              'mac_address', 'serial', 'language',)
+              'mac_address', 'serial', 'language', 'html_response',)
