@@ -5,12 +5,12 @@ then
     echo "set grub-pc/install_devices /dev/sda" | debconf-communicate
     apt-get update
     apt-get -y upgrade
-    apt-get -y install supervisor git python3 python3-dev python3-setuptools python3-pip python-virtualenv mysql-client
+    apt-get -y install supervisor git python python-dev python-setuptools python-pip python-virtualenv mysql-client
 
     # Mysql install
     echo 'mysql-server mysql-server/root_password password releasenotes' | debconf-set-selections
     echo 'mysql-server mysql-server/root_password_again password releasenotes' | debconf-set-selections
-    apt-get install -y mysql-server-5.7 > /dev/null 2>&1
+    apt-get install -y mysql-server-5.5 > /dev/null 2>&1
 
     # Mysql setup
     mysqladmin -uroot -preleasenotes create releasenotes || exit 1
@@ -20,7 +20,7 @@ then
 
     # Install the virtualenv in ~vagrant but the project in /vagrant.
     sudo -u vagrant -s -H -- <<EOF
-virtualenv -p /usr/bin/python3.5 /home/vagrant/env
+virtualenv -p /usr/bin/python2.7 /home/vagrant/env
 source /home/vagrant/env/bin/activate
 cd /vagrant/
 /home/vagrant/env/bin/pip install -r requirements.txt
@@ -35,8 +35,8 @@ directory=/vagrant/releasenotes_project
 autostart=0
 EOF
     # Fix supervisor in ubuntu 16.04 (FFS)
-    systemctl enable supervisor
-    systemctl start supervisor
+    # systemctl enable supervisor
+    # systemctl start supervisor
     supervisorctl reload
 
     touch /home/vagrant/provisioned
