@@ -1,9 +1,10 @@
 from rest_framework import serializers
 
-from releasenotes.models import Releasenotes
+from releasenotes.models import ReleaseNote
+
 
 class ReleaseNotesSerializer(serializers.HyperlinkedModelSerializer):
   class Meta:
-    model = Releasenotes
+    model = ReleaseNote
     fields = ('hardware', 'model', 'firmware', 'app_version', 'app_platform',
               'mac_address', 'serial', 'language',)

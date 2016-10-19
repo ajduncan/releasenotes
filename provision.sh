@@ -24,6 +24,7 @@ virtualenv -p /usr/bin/python3.5 /home/vagrant/env
 source /home/vagrant/env/bin/activate
 cd /vagrant/
 /home/vagrant/env/bin/pip install -r requirements.txt
+/home/vagrant/env/bin/python manage.py migrate
 EOF
 
     cat <<'EOF' > /etc/supervisor/conf.d/runserver.conf
