@@ -11,6 +11,12 @@ information.
 
   $ curl -H 'Accept: application/json; indent=4' -u admin:password123 http://127.0.0.1:8000/releasenotes/
 
+  Or visit:
+
+  http://localhost:8000/releasenotes/
+
+  With admin / password123 for the username and password.
+
 ## About ##
 
 release notes provides an API endpoint for remote hooks to report hardware
