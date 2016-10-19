@@ -19,9 +19,9 @@ then
     mysqladmin -uroot -preleasenotes flush-privileges || exit 1
 
     # Install the virtualenv in ~vagrant but the project in /vagrant.
-    sudo -u vagrant -s <<'EOF' || exit 1
-cd /vagrant/
+    sudo -u vagrant -s -H -- <<EOF
 virtualenv -p /usr/bin/python3.5 /home/vagrant/env
+source /home/vagrant/env/bin/activate
 cd /vagrant/
 /home/vagrant/env/bin/pip install -r requirements.txt
 EOF
@@ -32,11 +32,12 @@ command=/home/vagrant/env/bin/python manage.py runserver 0.0.0.0:8000
 directory=/vagrant/releasenotes_project
 autostart=0
 EOF
-    supervisorctl reload || exit 1
+    # Fix supervisor in ubuntu 16.04 (FFS)
+    systemctl enable supervisor
+    systemctl start supervisor
+    supervisorctl reload
 
     touch /home/vagrant/provisioned
 fi
 
-systemctl enable supervisor
-systemctl start supervisor
 supervisorctl start runserver
