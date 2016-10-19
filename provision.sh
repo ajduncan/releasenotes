@@ -25,6 +25,7 @@ source /home/vagrant/env/bin/activate
 cd /vagrant/
 /home/vagrant/env/bin/pip install -r requirements.txt
 /home/vagrant/env/bin/python manage.py migrate
+/home/vagrant/env/bin/python manage.py loaddata developerdata
 EOF
 
     cat <<'EOF' > /etc/supervisor/conf.d/runserver.conf

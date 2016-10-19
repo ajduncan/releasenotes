@@ -124,6 +124,11 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+# Fixtures for developer data.
+FIXTURE_DIRS = [
+    os.path.join(BASE_DIR, "fixtures"),
+]
+
 REST_FRAMEWORK = {
   'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.IsAdminUser',),
   'PAGE_SIZE': 10
