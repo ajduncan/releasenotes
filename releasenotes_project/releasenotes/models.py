@@ -1,5 +1,4 @@
 from django.db import models
-from django.conf.global_settings import LANGUAGES
 
 
 class ReleaseNote(models.Model):
@@ -11,7 +10,7 @@ class ReleaseNote(models.Model):
     app_platform = models.CharField(max_length=100, null=False, blank=False, default='')
     mac_address = models.CharField(max_length=20, null=True, blank=True, default='')
     serial = models.CharField(max_length=100, null=True, blank=True, default='')
-    language = models.CharField(max_length=7, choices=LANGUAGES, blank=False, default='')
+    language = models.CharField(max_length=7, null=False, blank=False, default='')
     html_response = models.TextField(null=False, blank=False, default='')
 
     class Meta:
